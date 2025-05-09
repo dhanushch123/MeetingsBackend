@@ -14,7 +14,7 @@ const eventRouter = require('./routes/eventRoute.js')
 app.use(express.json())
 app.set('trust proxy', 1);
 app.use(cors({
-    origin : 'https://meetings-frontend-4lrq-dhanushch123s-projects.vercel.app',
+    origin : 'https://meetings-frontend-xwks-dhanushch123s-projects.vercel.app',
     credentials : true
 }))
 app.use(cookieParser())

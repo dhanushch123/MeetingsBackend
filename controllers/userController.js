@@ -267,14 +267,13 @@ let setStatus = async(request,response)=>{
     let obj = request.body
 
     // we have to find the event in pending and update the status 
-    user.pending.forEach((item)=>{
-        if(item.event.toString() == eventid)
-        {
-            // update
-           
-            Object.assign(item,obj)
+    for (let i = 0; i < user.pending.length; i++) {
+        if (user.pending[i].event.toString() === eventid) {
+            Object.assign(user.pending[i], obj);
+            break;
         }
-    })
+    }
+    
     user.markModified("pending"); 
     await user.save()
     response.status(200).json({message : "set status successfully"})
