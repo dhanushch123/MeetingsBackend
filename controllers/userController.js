@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs')
 const userModel = require('../models/userModel')
 const eventModel = require('../models/eventModel')
 const jwt = require('jsonwebtoken')
-const {convertTo24Hour, getEvents} = require('./eventController.js')
+const {convertTo24Hour, getEvents, sendMail} = require('./eventController.js')
 
 
 
@@ -263,13 +263,31 @@ let setStatus = async(request,response)=>{
         let user = await userModel.findById(userid)
 
     let eventid = request.params.id
-
+    let evt = await eventModel.findById(eventid)
     let obj = request.body
+    const subject = `You have been invited to join the meeting`;
+  
+  const text = `
+    You have accepted the invitation for the following event:
+
+    Event: ${evt.meetingname}
+    Date: ${evt.date}
+    Time: ${evt.time} ${evt.meridian}
+    
+
+    You can join the event using the following link: ${evt.elink}
+
+    Best regards,
+    Event Scheduler Team
+  `;
 
     // we have to find the event in pending and update the status 
     for (let i = 0; i < user.pending.length; i++) {
         if (user.pending[i].event.toString() === eventid) {
             Object.assign(user.pending[i], obj);
+            if(obj.status == "accepted"){
+                sendMail(user.email,subject,text)
+            }
             break;
         }
     }

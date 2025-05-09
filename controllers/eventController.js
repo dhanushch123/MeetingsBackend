@@ -5,6 +5,7 @@ const{verifyToken} = require('../middlewares/middleware.js')
 
 const eventModel = require('../models/eventModel.js')
 const { request } = require('express')
+const nodemailer = require("nodemailer");
 
 let firstpage = (request,response)=>{
     
@@ -13,6 +14,49 @@ let firstpage = (request,response)=>{
         status : 200
     })
 }
+
+let sub = `Meeting Invitation from ${user.firstname} via Event Scheduler`
+        const txt = `You have been invited to join a meeting by ${user.firstname} through the Event Scheduler platform.
+
+Please log in to your account to view the meeting details and respond to the invitation.
+
+Website: https://meetings-frontend-xwks-dhanushch123s-projects.vercel.app/
+
+If you were not expecting this invitation, you may safely ignore this email.
+
+Best regards,  
+Event Scheduler Team`;
+
+
+
+
+
+const sendMail = async (toEmail, subject, text) => {
+  try {
+    const transporter = nodemailer.createTransport({
+      service: "gmail", 
+      auth: {
+        user: process.env.EMAIL_USER,      
+        pass: process.env.EMAIL_PASS       
+      }
+    });
+
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: toEmail,
+      subject,
+      text
+    };
+
+    await transporter.sendMail(mailOptions);
+    console.log(`Mail sent to ${toEmail}`);
+  } catch (error) {
+    console.error("Mail send error:", error);
+  }
+};
+
+
+
 
 
 const index = {
@@ -271,6 +315,8 @@ let create = async(request,response)=>{
         
         // we are having mails now
         // console.log(participants)
+        
+
         await Promise.all(
             participants.map(async (item) => {
                 let part = await userModel.findOne({ email: item });
@@ -278,6 +324,8 @@ let create = async(request,response)=>{
               
                 if (part) {
                     part.pending.push({event :  event._id,status : "pending"});
+                    sendMail(item,sub,txt)
+
                    
                     await part.save(); // Save the updated user
                 }
@@ -581,6 +629,7 @@ let updevent = async(request,response)=>{
     let newMails = [];
 for (let mail of details.participants) {
     if (event.participants.includes(mail)) {
+        sendMail(mail,sub,txt)
         newMails.push(mail);
     }
 }
@@ -637,4 +686,4 @@ for (let mail of avoidedMails) {
  
 
 
-module.exports = {firstpage,create,getEvents,setStatus,remove,updevent,convertTo24Hour}
+module.exports = {firstpage,create,getEvents,setStatus,remove,updevent,convertTo24Hour,sendMail}
