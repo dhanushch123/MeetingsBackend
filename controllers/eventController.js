@@ -324,7 +324,7 @@ Event Scheduler Team`;
               
                 if (part) {
                     part.pending.push({event :  event._id,status : "pending"});
-                    sendMail(item,sub,txt)
+                    await sendMail(item,sub,txt)
 
                    
                     await part.save(); // Save the updated user

@@ -286,7 +286,7 @@ let setStatus = async(request,response)=>{
         if (user.pending[i].event.toString() === eventid) {
             Object.assign(user.pending[i], obj);
             if(obj.status == "accepted"){
-                sendMail(user.email,subject,text)
+                await sendMail(user.email,subject,text)
             }
             break;
         }
