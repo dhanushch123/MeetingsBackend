@@ -50,7 +50,11 @@ const login = async(request,response)=>{
                     firstname : user.firstname,
                     lastname : user.lastname
                 },process.env.SECRET_KEY,{expiresIn : "2h"})
-                response.cookie("token",token)
+                response.cookie("token",token,{
+                    httpOnly: true,
+                    secure: true,  
+                    sameSite: "None" 
+                  })
 
                 response.status(200).json({message : "authenticated successfully"})
             }
