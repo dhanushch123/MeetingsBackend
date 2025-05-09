@@ -15,17 +15,7 @@ let firstpage = (request,response)=>{
     })
 }
 
-let sub = `Meeting Invitation from ${user.firstname} via Event Scheduler`
-        const txt = `You have been invited to join a meeting by ${user.firstname} through the Event Scheduler platform.
 
-Please log in to your account to view the meeting details and respond to the invitation.
-
-Website: https://meetings-frontend-xwks-dhanushch123s-projects.vercel.app/
-
-If you were not expecting this invitation, you may safely ignore this email.
-
-Best regards,  
-Event Scheduler Team`;
 
 
 
@@ -293,7 +283,17 @@ let create = async(request,response)=>{
         // we have got the event will update user.booked
 
         // we have date we check the slots
+        let sub = `Meeting Invitation from ${user.firstname} via Event Scheduler`
+        const txt = `You have been invited to join a meeting by ${user.firstname} through the Event Scheduler platform.
 
+Please log in to your account to view the meeting details and respond to the invitation.
+
+Website: https://meetings-frontend-xwks-dhanushch123s-projects.vercel.app/
+
+If you were not expecting this invitation, you may safely ignore this email.
+
+Best regards,  
+Event Scheduler Team`;
         for (let i = 0; i < user.booked[date].length; i++) {
             const slot = user.booked[date][i];
             if (!slot.eventId) {
