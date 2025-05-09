@@ -13,7 +13,7 @@ const userRouter = require('./routes/userRoute.js')
 const eventRouter = require('./routes/eventRoute.js')
 app.use(express.json())
 app.use(cors({
-    origin : 'http://localhost:5173',
+    origin : 'https://meetings-frontend-y4wr.vercel.app',
     credentials : true
 }))
 app.use(cookieParser())
