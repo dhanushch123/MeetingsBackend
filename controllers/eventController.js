@@ -138,7 +138,7 @@ async function checkAvailability(availability,time,meridian,duration,day,user,da
     // we have to check slots that exists in day
     const eventStartMin = eventStartH * 60 + eventStartM;
     const eventEndMin = eventEndH * 60 + eventEndM;
-    for(slot of availability[index[day]].slots)
+    for(let slot of availability[index[day]].slots)
     {
         // we have to write the logic here
         // we will have    slot = {start : " ",end : " "}
@@ -391,7 +391,7 @@ async function isConflict(event1, pending) {
     const event1Start = convertToMinutes(event1.time, event1.meridian);
     const event1End = event1Start + parseInt(event1.duration) * 60;
 
-    for(evt of acceptedEvents)
+    for(let evt of acceptedEvents)
     {
         if(evt.date == event1.date)
         {
@@ -651,7 +651,7 @@ for (let mail of details.participants) {
 }
 
 let avoidedMails = [];
-for (let mail of event.participants) {
+ for(let mail of event.participants) {
     if (!details.participants.includes(mail)) {
         avoidedMails.push(mail);
     }

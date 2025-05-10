@@ -165,7 +165,7 @@ let getPending = async (request, response) => {
 
     
 
-    for(item of arr){
+    for(let item of arr){
         
         if(set.has(item.event.toString())){
             
@@ -208,7 +208,7 @@ let getPast = async(request,response)=>{
 
     
 
-    for(item of user.past){
+    for(let item of user.past){
         
         if(set.has(item.event.toString())){
             
@@ -331,7 +331,7 @@ let getAvailability = async (request,response)=>{
 
     
 
-    for(item of user.pending){
+    for(let item of user.pending){
         
         if(set1.has(item.event.toString())){
             
@@ -347,7 +347,7 @@ let getAvailability = async (request,response)=>{
     user.pending = newPending;
     await userModel.findByIdAndUpdate(user._id, { pending: newPending });
        let events = []
-       for(item of newPending)
+       for(let item of newPending)
        {
         let event = await eventModel.findById(item.event)
         if(!event) continue;
@@ -387,7 +387,7 @@ let getAvailability = async (request,response)=>{
 
     
 
-    for(item of user.past){
+    for(let item of user.past){
         
         if(set.has(item.event.toString())){
             
@@ -404,7 +404,7 @@ let getAvailability = async (request,response)=>{
     await userModel.findByIdAndUpdate(user._id, { past: newPast });
        
 
-       for(item of newPast){
+       for(let item of newPast){
         let event = await eventModel.findById(item.event)
         if(!event) continue;
         let{time,endTime,meridian,date,meetingname} = event 
@@ -480,7 +480,7 @@ let removeDuplicates = async(request,response)=>{
 
     
 
-    for(item of user.past){
+    for(let item of user.past){
         
         if(set.has(item.event.toString())){
             
