@@ -30,7 +30,7 @@ const sendMail = async (toEmail, subject, text) => {
       service: "gmail", 
       auth: {
         user: Authemail,      
-        pass: password      
+        pass: Authpassword      
       }
     });
 
