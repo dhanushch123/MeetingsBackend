@@ -10,6 +10,7 @@ const {convertTo24Hour, getEvents, sendMail} = require('./eventController.js')
 
 
 
+
 const signup = async (request,response)=>{
     
     try{

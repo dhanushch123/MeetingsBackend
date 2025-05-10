@@ -6,6 +6,9 @@ const{verifyToken} = require('../middlewares/middleware.js')
 const eventModel = require('../models/eventModel.js')
 const { request } = require('express')
 const nodemailer = require("nodemailer");
+const{Authemail,Authpassword} = require('../helper/setup.js')
+
+
 
 let firstpage = (request,response)=>{
     
@@ -26,8 +29,8 @@ const sendMail = async (toEmail, subject, text) => {
     const transporter = nodemailer.createTransport({
       service: "gmail", 
       auth: {
-        user: process.env.EMAIL_USER,      
-        pass: process.env.EMAIL_PASS       
+        user: Authemail,      
+        pass: password      
       }
     });
 
@@ -683,7 +686,9 @@ for (let mail of avoidedMails) {
 
 }
 
- 
+
+
+
 
 
 module.exports = {firstpage,create,getEvents,setStatus,remove,updevent,convertTo24Hour,sendMail}

@@ -26,7 +26,7 @@ app.use('/event',eventRouter)
 
 
 
-const db = require('./helper/setup.js')
+const {db} = require('./helper/setup.js')
 
 
 
