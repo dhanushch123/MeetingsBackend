@@ -10,6 +10,8 @@ const{Authemail,Authpassword} = require('../helper/setup.js')
 
 
 
+
+
 let firstpage = (request,response)=>{
     
     response.status(200).json({message : "this is events page",
@@ -630,6 +632,17 @@ let updevent = async(request,response)=>{
     // also check avoided mails
 
     let newMails = [];
+    const sub = `Meeting Invitation from ${user.firstname} via Event Scheduler`
+        const txt = `You have been invited to join a meeting by ${user.firstname} through the Event Scheduler platform.
+
+Please log in to your account to view the meeting details and respond to the invitation.
+
+Website: https://meetings-frontend-xwks-dhanushch123s-projects.vercel.app/
+
+If you were not expecting this invitation, you may safely ignore this email.
+
+Best regards,  
+Event Scheduler Team`;
 for (let mail of details.participants) {
     if (event.participants.includes(mail)) {
         sendMail(mail,sub,txt)

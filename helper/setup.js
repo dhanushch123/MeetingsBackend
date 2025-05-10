@@ -11,5 +11,6 @@ const Authemail = process.env.EMAIL_USER
 const Authpassword = process.env.EMAIL_PASS
 
 
+
 module.exports = {db,Authemail,Authpassword}
 
