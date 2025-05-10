@@ -122,8 +122,10 @@ let getPending = async (request, response) => {
             eventDate.setMinutes(eventDate.getMinutes() + event.duration*60);
             console.log("Present Time" ,now)
             console.log("eventDate",eventDate)
+            const endTime = new Date(eventDate.getTime() + event.duration * 60 * 60 * 1000);
+            console.log("endTime : ",endTime)
 
-            if (eventDate < now) {
+            if (endTime < now) {
              
                 toPast.push(item);
                 console.log(eventDate,now)
