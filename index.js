@@ -13,10 +13,27 @@ const userRouter = require('./routes/userRoute.js')
 const eventRouter = require('./routes/eventRoute.js')
 app.use(express.json())
 app.set('trust proxy', 1);
-app.use(cors({
-    origin : 'https://meetings-frontend-xwks-dhanushch123s-projects.vercel.app',
-    credentials : true
-}))
+
+const allowedOrigins = [
+    'https://meetings-frontend-xwks-dhanushch123s-projects.vercel.app',
+    'https://your-second-frontend.vercel.app',
+    'http://localhost:5173'
+  ];
+  
+  app.use(cors({
+    origin: function (origin, callback) {
+   
+      if (!origin) return callback(null, true);
+  
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      } else {
+        return callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true
+  }));
+
 app.use(cookieParser())
 app.use(express.urlencoded({extended : true}))
 
