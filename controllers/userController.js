@@ -196,6 +196,7 @@ let getPending = async (request, response) => {
 
 let getPast = async(request,response)=>{
     try{
+        console.log("In past section : ")
         let userid = request.params.id
     let user = await userModel.findById(userid)
 
@@ -223,10 +224,10 @@ let getPast = async(request,response)=>{
 
     user.past = newPast;
     await userModel.findByIdAndUpdate(user._id, { past: newPast });
-    
+    console.log(newPast)
 
     let past = await Promise.all(
-        user.past.map(async(item)=>{
+        user.newPast.map(async(item)=>{
             let evt = await eventModel.findById(item.event)
             // console.log(evt)
             if(!evt) return null;
@@ -258,6 +259,7 @@ let getPast = async(request,response)=>{
     }
     catch(err)
     {
+        console.log(err.message)
         response.status(400).json({message : err.message})
     }
 }
