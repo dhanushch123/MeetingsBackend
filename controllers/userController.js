@@ -104,7 +104,7 @@ let getPending = async (request, response) => {
         console.log("In bookings section")
         let now = new Date();
         now = new Date(now.getTime() + 5.5 * 60 * 60 * 1000) // utc -> indian time
-        console.log("now : ",now)
+        
 
         let toPast = []
         let validIds = []
@@ -159,7 +159,7 @@ let getPending = async (request, response) => {
 
         let arr = user.past.concat(toPast)
         //check for duplicates
-
+        console.log(arr)
         let set = new Set()
         let newPast = []
 
@@ -196,7 +196,7 @@ let getPending = async (request, response) => {
 
 let getPast = async(request,response)=>{
     try{
-        console.log("In past section : ")
+        console.log("In past section : ....")
         let userid = request.params.id
     let user = await userModel.findById(userid)
 
