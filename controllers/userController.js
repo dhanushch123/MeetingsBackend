@@ -274,6 +274,7 @@ let setStatus = async(request,response)=>{
     Event: ${evt.meetingname}
     Date: ${evt.date}
     Time: ${evt.time} ${evt.meridian}
+    Host: ${evt.hostname}
     
 
     You can join the event using the following link: ${evt.elink}
