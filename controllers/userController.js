@@ -104,6 +104,7 @@ let getPending = async (request, response) => {
         console.log("In bookings section")
         let now = new Date();
         now = new Date(date.getTime() + 5.5 * 60 * 60 * 1000) // utc -> indian time
+        console.log("now : ",now)
 
         let toPast = []
         let validIds = []
@@ -119,6 +120,8 @@ let getPending = async (request, response) => {
             let { hours, minutes } = convertTo24Hour(event.time, event.meridian);
             eventDate.setHours(hours, minutes, 0, 0);
             let endTime = new Date(eventDate.getTime() + event.duration * 60 * 60 * 1000)
+            console.log("Event start",eventDate)
+            console.log("End Time",endTime)
 
             if (endTime < now) {
              
