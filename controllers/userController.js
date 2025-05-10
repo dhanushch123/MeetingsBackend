@@ -122,7 +122,7 @@ let getPending = async (request, response) => {
             if (eventDate < now) {
              
                 toPast.push(item);
-                //console.log(item)
+                console.log(eventDate,now)
                 return null; 
             }
 
