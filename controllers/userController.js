@@ -117,6 +117,7 @@ let getPending = async (request, response) => {
             
             let eventDate = new Date(event.date);
             let { hours, minutes } = convertTo24Hour(event.time, event.meridian);
+            console.log('event actual ' , hours ,minutes)
             eventDate.setHours(hours, minutes, 0, 0);
             eventDate.setMinutes(eventDate.getMinutes() + event.duration*60);
             console.log("Present Time" ,now)
