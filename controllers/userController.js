@@ -204,7 +204,7 @@ let getPast = async(request,response)=>{
         return response.status(200).json({ past: [] });
     }
 
-    let set = new Set()
+    /*let set = new Set()
     let newPast = []
 
     
@@ -224,7 +224,7 @@ let getPast = async(request,response)=>{
 
     user.past = newPast;
     await userModel.findByIdAndUpdate(user._id, { past: newPast });
-    console.log(newPast)
+    console.log(newPast)*/
 
     let past = await Promise.all(
         newPast.map(async(item)=>{
