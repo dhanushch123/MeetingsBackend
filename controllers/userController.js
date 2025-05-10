@@ -103,7 +103,7 @@ let getPending = async (request, response) => {
         }
         console.log("In bookings section")
         let now = new Date();
-        now = new Date(date.getTime() + 5.5 * 60 * 60 * 1000) // utc -> indian time
+        now = new Date(now.getTime() + 5.5 * 60 * 60 * 1000) // utc -> indian time
         console.log("now : ",now)
 
         let toPast = []
