@@ -120,12 +120,12 @@ let getPending = async (request, response) => {
             let { hours, minutes } = convertTo24Hour(event.time, event.meridian);
             eventDate.setHours(hours, minutes, 0, 0);
             let endTime = new Date(eventDate.getTime() + event.duration * 60 * 60 * 1000)
-            console.log("Event start",eventDate)
-            console.log("End Time",endTime)
+           
 
             if (endTime < now) {
-             
+                
                 toPast.push(item);
+                console.log(item)
                 //console.log(item)
                 return null; 
             }
@@ -157,14 +157,15 @@ let getPending = async (request, response) => {
 
         await userModel.findByIdAndUpdate(user._id,{pending : validIds});
 
-        user.past.push(...toPast)
+        let arr = user.past.concat(toPast)
+        //check for duplicates
 
         let set = new Set()
         let newPast = []
 
     
 
-    for(item of user.past){
+    for(item of arr){
         
         if(set.has(item.event.toString())){
             
