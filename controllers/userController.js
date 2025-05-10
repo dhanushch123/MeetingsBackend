@@ -104,6 +104,7 @@ let getPending = async (request, response) => {
 
 
         let now = new Date();
+        now = new Date(date.getTime() + 5.5 * 60 * 60 * 1000)
 
         let toPast = []
         let validIds = []
@@ -117,13 +118,12 @@ let getPending = async (request, response) => {
             
             let eventDate = new Date(event.date);
             let { hours, minutes } = convertTo24Hour(event.time, event.meridian);
-            console.log('event actual ' , hours ,minutes)
+            
             eventDate.setHours(hours, minutes, 0, 0);
             eventDate.setMinutes(eventDate.getMinutes() + event.duration*60);
-            console.log("Present Time" ,now)
-            console.log("eventDate",eventDate)
+            
             const endTime = new Date(eventDate.getTime() + event.duration * 60 * 60 * 1000);
-            console.log("endTime : ",endTime)
+           
 
             if (endTime < now) {
              
