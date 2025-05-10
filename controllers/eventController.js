@@ -35,7 +35,7 @@ const sendMail = async (toEmail, subject, text) => {
     });
 
     const mailOptions = {
-      from: process.env.EMAIL_USER,
+      from: Authemail,
       to: toEmail,
       subject,
       text
