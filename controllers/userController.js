@@ -101,10 +101,8 @@ let getPending = async (request, response) => {
         if (!user) {
             return response.status(404).json({ message: "User not found" });
         }
-
-
+        console.log("In bookings section")
         let now = new Date();
-        now = new Date(date.getTime() + 5.5 * 60 * 60 * 1000)
 
         let toPast = []
         let validIds = []
@@ -118,18 +116,13 @@ let getPending = async (request, response) => {
             
             let eventDate = new Date(event.date);
             let { hours, minutes } = convertTo24Hour(event.time, event.meridian);
-            
             eventDate.setHours(hours, minutes, 0, 0);
-            
-            
-            const endTime = new Date(eventDate.getTime() + event.duration * 60 * 60 * 1000);
-            console.log("Now : ",now)
-            console.log("evt time : ",hours,minutes)
-            console.log("endTime : ",endTime)
-            if (endTime < now) {
+            eventDate.setMinutes(eventDate.getMinutes() + event.duration*60);
+
+            if (eventDate < now) {
              
                 toPast.push(item);
-                console.log(eventDate,now)
+                //console.log(item)
                 return null; 
             }
 
