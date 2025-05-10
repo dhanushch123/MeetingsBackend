@@ -102,6 +102,7 @@ let getPending = async (request, response) => {
             return response.status(404).json({ message: "User not found" });
         }
 
+
         let now = new Date();
 
         let toPast = []
@@ -118,6 +119,8 @@ let getPending = async (request, response) => {
             let { hours, minutes } = convertTo24Hour(event.time, event.meridian);
             eventDate.setHours(hours, minutes, 0, 0);
             eventDate.setMinutes(eventDate.getMinutes() + event.duration*60);
+            console.log(now)
+            console.log(eventDate)
 
             if (eventDate < now) {
              
