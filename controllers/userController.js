@@ -120,11 +120,12 @@ let getPending = async (request, response) => {
             let { hours, minutes } = convertTo24Hour(event.time, event.meridian);
             
             eventDate.setHours(hours, minutes, 0, 0);
-            eventDate.setMinutes(eventDate.getMinutes() + event.duration*60);
+            
             
             const endTime = new Date(eventDate.getTime() + event.duration * 60 * 60 * 1000);
-           
-
+            console.log("Now : ",now)
+            console.log("evt time : ",hours,minutes)
+            console.log("endTime : ",endTime)
             if (endTime < now) {
              
                 toPast.push(item);
