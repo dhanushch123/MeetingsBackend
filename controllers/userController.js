@@ -7,6 +7,7 @@ const userModel = require('../models/userModel')
 const eventModel = require('../models/eventModel')
 const jwt = require('jsonwebtoken')
 const {convertTo24Hour, getEvents, sendMail} = require('./eventController.js')
+const moment = require('moment-timezone');
 
 
 
@@ -368,8 +369,8 @@ let getAvailability = async (request,response)=>{
         let status = item.status
         let obj = {
             title : meetingname,
-            start : new Date(year,month,day,hours,minutes),
-            end : new Date(year,month,day,eH,eM),
+            start : moment.tz({ year, month, day, hour: hours, minute: minutes }, 'Asia/Kolkata').toDate(),
+            end : moment.tz({ year, month, day, hour: eH, minute: eM }, 'Asia/Kolkata').toDate(),
             status
 
         }
@@ -424,8 +425,8 @@ let getAvailability = async (request,response)=>{
         let status = "past"
         let obj = {
             title : meetingname,
-            start : new Date(year,month,day,hours,minutes),
-            end : new Date(year,month,day,eH,eM),
+            start : moment.tz({ year, month, day, hour: hours, minute: minutes }, 'Asia/Kolkata').toDate(),
+            end : moment.tz({ year, month, day, hour: eH, minute: eM }, 'Asia/Kolkata').toDate(),
             status
 
         }
