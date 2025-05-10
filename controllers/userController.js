@@ -227,7 +227,7 @@ let getPast = async(request,response)=>{
     console.log(newPast)*/
 
     let past = await Promise.all(
-        newPast.map(async(item)=>{
+        user.past.map(async(item)=>{
             let evt = await eventModel.findById(item.event)
             // console.log(evt)
             if(!evt) return null;
