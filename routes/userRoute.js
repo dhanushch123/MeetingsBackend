@@ -2,7 +2,7 @@
 const express = require('express')
 
 const userRouter = express.Router()
-const {signup,login,update,getPending,setStatus,getPast,getAvailability,updateAvailability,removeDuplicates,logout} = require('../controllers/userController.js')
+const {signup,login,update,getPending,setStatus,getPast,getAvailability,updateAvailability,removeDuplicates,logout,getDetails} = require('../controllers/userController.js')
 const {verifyToken} = require('../middlewares/middleware.js')
 
 
@@ -25,6 +25,8 @@ userRouter.put('/updateAvailability/:id',updateAvailability)
 userRouter.put('/removeDuplicates/:id',removeDuplicates)
 
 userRouter.post('/logout',logout)
+
+userRouter.get('/getDetails',getDetails)
 
 
 

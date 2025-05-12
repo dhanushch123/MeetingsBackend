@@ -285,7 +285,7 @@ let setStatus = async(request,response)=>{
     Host: ${evt.hostname}
     
 
-    You can join the event using the following link: ${evt.elink}
+     You can join the event using the following link: ${evt.elink}
 
     Best regards,
     Event Scheduler Team
@@ -520,10 +520,24 @@ let logout = async(request,response)=>{
     }
 }
 
+let getDetails = async(request,response)=>{
+    try{
+        let details = await userModel.find({}, 'email firstname lastname');
+        response.status(200).json({details})
+    }catch(err){
+        response.status(400).json({message : err.message})
+    }
+    
+        
+}
+
+
+
+
   
 
 
 
 
-module.exports = {signup,login,update,getPending,setStatus,getPast,getAvailability,updateAvailability,removeDuplicates,logout}
+module.exports = {signup,login,update,getPending,setStatus,getPast,getAvailability,updateAvailability,removeDuplicates,logout,getDetails}
 
