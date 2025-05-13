@@ -644,7 +644,7 @@ If you were not expecting this invitation, you may safely ignore this email.
 Best regards,  
 Event Scheduler Team`;
 for (let mail of details.participants) {
-    if (event.participants.includes(mail)) {
+    if (!event.participants.includes(mail)) {
         sendMail(mail,sub,txt)
         newMails.push(mail);
     }
