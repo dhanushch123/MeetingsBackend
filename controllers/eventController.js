@@ -643,11 +643,10 @@ If you were not expecting this invitation, you may safely ignore this email.
 
 Best regards,  
 Event Scheduler Team`;
-console.log("New mails : ",details.participants)
-console.log("Old mails : ",event.participants)
+
 for (let mail of details.participants) {
     if (!event.participants.includes(mail)) {
-        console.log("New mail : ",mail)
+        
         sendMail(mail,sub,txt)
         newMails.push(mail);
     } 
@@ -656,7 +655,7 @@ for (let mail of details.participants) {
 let avoidedMails = [];
  for(let mail of event.participants) {
     if (!details.participants.includes(mail)) {
-        console.log("avoided mail : ",mail)
+        
         avoidedMails.push(mail);
     }
 }

@@ -15,8 +15,9 @@ app.use(express.json())
 app.set('trust proxy', 1);
 
 const allowedOrigins = [
-    'https://meetings-frontend-xwks-dhanushch123s-projects.vercel.app',
+    
     'https://meetings-frontend-k91x-dhanushch123s-projects.vercel.app',
+    'https://meetings-frontend-dl8t-dhanushch123s-projects.vercel.app/',
     'http://localhost:5173'
   ];
   
