@@ -293,7 +293,7 @@ let create = async(request,response)=>{
 
 Please log in to your account to view the meeting details and respond to the invitation.
 
-Website: https://meetings-frontend-xwks-dhanushch123s-projects.vercel.app/
+Website: https://meetings-frontend-1jh4-dhanushch123s-projects.vercel.app
 
 If you were not expecting this invitation, you may safely ignore this email.
 
@@ -637,7 +637,7 @@ let updevent = async(request,response)=>{
 
 Please log in to your account to view the meeting details and respond to the invitation.
 
-Website: https://meetings-frontend-xwks-dhanushch123s-projects.vercel.app/
+Website: https://meetings-frontend-1jh4-dhanushch123s-projects.vercel.app
 
 If you were not expecting this invitation, you may safely ignore this email.
 
