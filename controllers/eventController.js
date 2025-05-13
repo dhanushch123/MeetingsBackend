@@ -647,10 +647,10 @@ console.log("New mails : ",details.participants)
 console.log("Old mails : ",event.participants)
 for (let mail of details.participants) {
     if (!event.participants.includes(mail)) {
-        console.log(mail)
+        console.log("New mail : ",mail)
         sendMail(mail,sub,txt)
         newMails.push(mail);
-    }
+    } 
 }
 
 let avoidedMails = [];
@@ -665,12 +665,9 @@ let avoidedMails = [];
 for (let mail of newMails) {
     let user = await userModel.findOne({ email: mail });
     if (user) {
-        // Avoid pushing duplicates
-        const alreadyExists = user.pending.some(p => p.event === eventid);
-        if (!alreadyExists) {
-            user.pending.push({ event: eventid, status: "pending" });
-            await user.save();
-        }
+        user.pending.push({ event: eventid, status: "pending" });
+        await user.save();
+        
     }
 }
 
@@ -684,6 +681,7 @@ for (let mail of avoidedMails) {
 }
 
     user.markModified('booked')
+    user.markModified('pending')
     await user.save()
 
     
