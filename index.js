@@ -34,7 +34,13 @@ const allowedOrigins = [
     },
     credentials: true
   }));
-
+  app.use(
+  express.static('build', {
+    setHeaders: (res, path) => {
+      res.setHeader('Cache-Control', 'no-store');
+    }
+  })
+);
 app.use(cookieParser())
 app.use(express.urlencoded({extended : true}))
 
