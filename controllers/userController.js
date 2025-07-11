@@ -512,10 +512,8 @@ let logout = async(request,response)=>{
         
     
         response.clearCookie("token")
-        response.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate');
-        response.setHeader('Pragma', 'no-cache');
-        response.setHeader('Expires', '0');
         
+
         response.status(200).json({message : "logged out successfully",status : 200})
 
     }
