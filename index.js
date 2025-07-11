@@ -38,12 +38,8 @@ const allowedOrigins = [
 app.use(cookieParser())
 app.use(express.urlencoded({extended : true}))
 
-
-
 app.use('/user',userRouter)
 app.use('/event',eventRouter)
-
-
 
 
 

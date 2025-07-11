@@ -512,8 +512,6 @@ let logout = async(request,response)=>{
         
     
         response.clearCookie("token")
-        
-
         response.status(200).json({message : "logged out successfully",status : 200})
 
     }
