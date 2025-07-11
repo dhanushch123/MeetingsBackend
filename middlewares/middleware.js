@@ -14,6 +14,10 @@ const verifyToken = (request,response,next)=>{
       
         const decoded = jwt.verify(token,process.env.SECRET_KEY)
         request.user = decoded;
+
+        response.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate');
+        response.setHeader('Pragma', 'no-cache');
+        response.setHeader('Expires', '0');
         
         next()
     }
